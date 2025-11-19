@@ -35,7 +35,7 @@ fun GridScreen(vm: PokedexViewModel) {
             ) {
                 CircularProgressIndicator(modifier = Modifier.size(64.dp))
                 Spacer(modifier = Modifier.height(16.dp))
-                Text("Cargando los primeros 500 pokemons")
+                Text("Cargando Pokémons... (Tarda un pelín)")
             }
         }
     } else {

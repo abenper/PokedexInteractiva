@@ -13,9 +13,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 
 @Composable
-// Firma: Recibe los datos del Pokémon (p) y una función de callback para cuando se pulsa (onClick)
+// Recibe los datos del Pokémon y una función de callback para cuando se pulsa (onClick)
 fun PokemonRow(p: PokemonCompose, onClick: (PokemonCompose) -> Unit) {
-    // Proporciona la elevación y el fondo para el elemento de la lista.
     Card(modifier = Modifier
         .fillMaxWidth() // La tarjeta ocupa todo el ancho disponible
         .padding(8.dp) // Espacio alrededor de la tarjeta

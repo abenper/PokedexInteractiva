@@ -28,7 +28,6 @@ fun GroupedScreen(vm: PokedexViewModel) {
 
     // Lógica condicional si 'loading' es verdadero, se muestra el indicador de progreso.
     if (loading) {
-        //Box se utiliza para centrar el spinner en toda la pantalla.
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
@@ -36,10 +35,9 @@ fun GroupedScreen(vm: PokedexViewModel) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                //Circulo de carga y texto
                 CircularProgressIndicator(modifier = Modifier.size(64.dp))
                 Spacer(modifier = Modifier.height(16.dp))
-                androidx.compose.material3.Text("Cargando los primeros 500 pokemons")
+                androidx.compose.material3.Text("Cargando Pokémons... (Tarda un pelin)")
             }
         }
     } else {

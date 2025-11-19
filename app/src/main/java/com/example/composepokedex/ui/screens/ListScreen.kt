@@ -24,8 +24,6 @@ fun ListScreen(vm: PokedexViewModel) {
 
     val pokemons by vm.pokemons.collectAsState()
     val loading by vm.loading.collectAsState()
-    val loadedCount by vm.pokemonsLoadedCount.collectAsState()
-    val totalPokemons = 500
 
     var selected by remember { mutableStateOf<PokemonCompose?>(null) }
 
@@ -39,7 +37,7 @@ fun ListScreen(vm: PokedexViewModel) {
             ) {
                 CircularProgressIndicator(modifier = Modifier.size(64.dp))
                 Spacer(modifier = Modifier.height(16.dp))
-                Text("Cargando Pokémons $loadedCount de $totalPokemons.")
+                Text("Cargando Pokémons... (Tarda un pelin)")
             }
         }
     } else {

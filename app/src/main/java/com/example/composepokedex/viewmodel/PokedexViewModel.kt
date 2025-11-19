@@ -16,15 +16,11 @@ class PokedexViewModel(private val repo: Repository = Repository()) : ViewModel(
     // pokemons: Es inmutable (solo lectura) y público. La UI lo observa.
     val pokemons: StateFlow<List<PokemonCompose>> = _pokemons
 
-
     // 2. Estado de la carga (el spinner)
     // _loading: Es mutable y privado. Inicia en 'true' para mostrar el spinner al principio.
     private val _loading = MutableStateFlow(true)
     // loading: Es inmutable y público. La UI lo observa para saber cuándo mostrar el spinner.
     val loading: StateFlow<Boolean> = _loading
-
-    private val _pokemonsLoadedCount = MutableStateFlow(0)
-    val pokemonsLoadedCount: StateFlow<Int> = _pokemonsLoadedCount
 
     // init: Se ejecuta inmediatamente cuando se crea la instancia del ViewModel.
     init {
@@ -36,18 +32,17 @@ class PokedexViewModel(private val repo: Repository = Repository()) : ViewModel(
         // Inicia una corrutina
         viewModelScope.launch {
             _loading.value = true //Muestra la rueda de carga
-            _pokemonsLoadedCount.value = 0
 
             _pokemons.value = try {
                 // Llama al Repository para hacer el trabajo de red (I/O).
-                // La corrutina se suspende aquí hasta que loadPokemons() devuelve el resultado de ahí que sea suspend fun.
+                // La corrutina se suspende aquí hasta que loadPokemons() devuelve el resultado.
                 repo.loadPokemons()
             } catch (e: Exception) {
-                //Manejo de errores. Si falla vacia la lista.
+                // Manejo de errores. Si falla, la lista se queda vacía.
                 emptyList()
             }
 
-            _loading.value = false //Oculta el spinner
+            _loading.value = false // Oculta el spinner (cambia el estado a 'terminado')
         }
     }
 }

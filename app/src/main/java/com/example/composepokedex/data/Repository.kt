@@ -7,7 +7,7 @@ class Repository(private val api: ApiService = ModuloRed.api) {
 
     // Funciones que usan cosas de red que no se sabe cuanto tiempo van a tardar en ejecutarse
     // usamos suspend, ya que así no paramos el hilo principal
-    suspend fun loadPokemons(onProgress: (Int) -> Unit): List<PokemonCompose> = withContext(Dispatchers.IO) {
+    suspend fun loadPokemons(): List<PokemonCompose> = withContext(Dispatchers.IO) {
 
         // Obtener la lista general (nombre y URL)
         val listResp = api.getListaPokemons(500)
@@ -47,8 +47,6 @@ class Repository(private val api: ApiService = ModuloRed.api) {
                         description = description
                     )
                 )
-
-                onProgress(r. + 1)
 
             } catch (e: Exception) {
                 //Ya que nos conectamos a una api lo hacemos con catch para controlar si hay errores

@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.example.composepokedex.ui.screens.GroupedScreen
 import com.example.composepokedex.ui.screens.GridScreen
 import com.example.composepokedex.ui.screens.ListScreen
@@ -47,30 +46,11 @@ fun PokedexApp(vm: PokedexViewModel = viewModel()) {
 private fun ColumnLayout(selectedTab: Int, onTabSelected: (Int) -> Unit, vm: PokedexViewModel) {
     Column {
         TabRow(selectedTabIndex = selectedTab) {
-            TabRow(selectedTabIndex = selectedTab) {
-                // Pestaña Lista
-                Tab(selected = selectedTab == 0, onClick = { onTabSelected(0) }) {
-                    Text(
-                        "Lista",
-                        modifier = Modifier.padding(vertical = 8.dp)
-                    )
-                }
-                // Pestaña Cuadrícula
-                Tab(selected = selectedTab == 1, onClick = { onTabSelected(1) }) {
-                    Text(
-                        "Cuadrícula",
-                        modifier = Modifier.padding(vertical = 8.dp)
-                    )
-                }
-                // Pestaña Por Tipo
-                Tab(selected = selectedTab == 2, onClick = { onTabSelected(2) }) {
-                    Text(
-                        "Por Tipo",
-                        modifier = Modifier.padding(vertical = 8.dp)
-                    )
-                }
-            }
+            Tab(selected = selectedTab == 0, onClick = { onTabSelected(0) }) { Text("Lista") }
+            Tab(selected = selectedTab == 1, onClick = { onTabSelected(1) }) { Text("Cuadrícula") }
+            Tab(selected = selectedTab == 2, onClick = { onTabSelected(2) }) { Text("Por Tipo") }
         }
+
 
         when (selectedTab) {
             0 -> ListScreen(vm = vm)
